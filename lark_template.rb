@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'yaml'
-require 'Base64'
+require 'base64'
 
 # Utility Methods
  
@@ -160,7 +160,7 @@ current_app_name = File.basename(File.expand_path(root))
 # Option set-up
 begin
   template_options = {}
-  open(File.join(File.dirname(template), "config.yml")) do |f|
+  open(File.join(File.expand_path(root), "..", File.dirname(template), "config.yml")) do |f|
     template_options = YAML.load(f)
   end
 rescue
