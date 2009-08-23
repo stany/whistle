@@ -6,7 +6,7 @@
 # rails branch options: any branch in the http://github.com/rails/rails/tree/master repo
 rails_branch: 2-3-stable
 # database options: postgresql (default), mysql, sqlite
-database: postgresql
+database: mysql
 # exception options: exceptional (default), hoptoad
 exception_handling: exceptional
 # monitoring options: new_relic (default), scout
@@ -20,7 +20,7 @@ link_rails_root: ~/rails
 # IE6 blocking: none, light (default), ie6nomore
 ie6_blocking: light
 # javascript library: prototype (default), jquery
-javascript_library: prototype
+javascript_library: jquery
 # Design: none (default), bluetrip
 design: none
 #
@@ -37,9 +37,9 @@ git_branches:
 # them that you're not using set to their default values
 #
 # Mail server connection information for config/initializers/mail.rb
-smtp_address: 72.249.191.186
+smtp_address: 127.0.0.1
 smtp_domain: example.com
-smtp_username: mikeg1@example.com
+smtp_username: fjguzman@example.com
 smtp_password: password
 # Capistrano information for config/deploy.rb
 capistrano_user: webadmin
