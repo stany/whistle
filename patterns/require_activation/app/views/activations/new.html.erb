@@ -1,0 +1,9 @@
+<% title t('.title') %>
+
+<p><%= t('.instruction') %></p>
+
+<% semantic_form_for @user, :url => finish_activate_path(@user.id), :html => { :method => :post } do |form| %>
+	<%= form.error_messages %>
+	<%= form.inputs :password, :password_confirmation %>
+	<%= form.submit t("label.activate") %>
+<% end %>
