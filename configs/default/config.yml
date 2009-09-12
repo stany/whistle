@@ -20,15 +20,10 @@ link_rails_root: ~/rails
 # IE6 blocking: none, light (default), ie6nomore
 ie6_blocking: light
 # javascript library: prototype (default), jquery
-<<<<<<< HEAD:config.yml
-javascript_library: jquery
-# Design: none (default), bluetrip
-=======
 javascript_library: prototype
 # template engine: erb (default), haml
 template_engine: erb
 # Design: none (default), bluetrip, compass
->>>>>>> ffmike/master:configs/default/config.yml
 design: none
 # compass_css_framework is only used if design == compass: blueprint (default), 960
 compass_css_framework: blueprint
