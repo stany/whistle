@@ -20,7 +20,7 @@ link_rails_root: ~/rails
 # IE6 blocking: none, light (default), ie6nomore
 ie6_blocking: light
 # javascript library: prototype (default), jquery
-javascript_library: prototype
+javascript_library: jquery
 # template engine: erb (default), haml
 template_engine: erb
 # Design: none (default), bluetrip, compass
@@ -28,7 +28,7 @@ design: none
 # compass_css_framework is only used if design == compass: blueprint (default), 960
 compass_css_framework: blueprint
 # Require users to activate after creating an account: false (default), true
-require_activation: false
+require_activation: true
 #
 # These options can be omitted, and the template will default to sensible behavior
 #
