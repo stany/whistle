@@ -42,7 +42,6 @@ h3. Coding Tools
 * "Authlogic":http://github.com/binarylogic/authlogic/tree/master for user authentication, including password resets, @anonymous_only@, @authenticated_only@, and @admin_only@ application helpers. Optionally installs user activation support.
 * World’s simplest authorization system: manage multiple string roles on users with @User#add_role@, @User#remove_role@, @User#clear_roles@, and @User#has_role?@
 * Date formats: @:us@, @:us_with_time@, @:short_day@, @:long_day@
-* "live-validations":http://wiki.github.com/augustl/live-validations for client-side JavaScript data entry validation. Add @:live_validations => true@ to @form_for@ declarations to hook this up.
 * "Paperclip":http://github.com/thoughtbot/paperclip/tree/master for attachment management
 * /pages/css_test will show most CSS styles in action
 * "Searchlogic":http://rdoc.info/projects/binarylogic/searchlogic for magic named scopes and search forms. Includes @attribute_equals@, @attribute_does_not_equal@, @attribute_begins_with@, @attribute_like@, @attribute_ends_with@, @attribute_greater_than@, @attribute_null@, @attribute_blank@, etc., etc.
@@ -52,7 +51,8 @@ h3. Coding Tools
 
 h3. Database Tools
 
-* Hooked up for PostgreSQL, MySQL, or sqlite depending on your configuration options
+* Hooked up for PostgreSQL, MySQL, or sqlite depending on your configuration options.
+* "foreigner":http://github.com/matthuhiggins/foreigner installed for foreign key support.
 * "admin-data":http://github.com/neerajdotname/admin_data/tree/master plugin for administrative UI. http://localhost:3000/admin_data will get you to the application’s data. On production, only admin can view data, no one can edit (modify config/initializers/admin_data.rb to adjust this)
 * "db-populate":http://github.com/ffmike/db-populate/tree/master for seed data
 
@@ -70,7 +70,7 @@ h3. External Services
 h3. Testing Tools
 
 * "Shoulda":http://thoughtbot.com/projects/shoulda and Test::Unit for testing
-* "rr":http://github.com/btakita/rr/tree/master for mocking
+* "rr":http://github.com/btakita/rr/tree/master or Mocha for mocking
 * "Object Daddy":http://github.com/flogic/object_daddy/tree/master for factories
 * Generated code is already covered by tests
 * "parallel-specs":http://github.com/grosser/parallel_specs/tree/master for faster testing. rake spec:parallel:prepare[2] to set up two test databases. rake test:parallel[2] to distribute tests across two cores

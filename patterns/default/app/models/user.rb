@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
   acts_as_authentic do |c|
-    c.merge_validates_format_of_login_field_options :live_validator => /^\\w[\\w\\.+\\-_@ ]+$/
-    c.merge_validates_format_of_email_field_options :live_validator => /^[A-Z0-9_\\.%\\+\\-]+@(?:[A-Z0-9\\-]+\\.)+(?:[A-Z]{2,4}|museum|travel)$/i
+    c.merge_validates_format_of_login_field_options :allow_blank => true
+    c.merge_validates_format_of_email_field_options :allow_blank => true, :unless => "email && email.size < 6"
+    c.merge_validates_confirmation_of_password_field_options :allow_blank => true
+    c.merge_validates_length_of_password_confirmation_field_options :if => "false"
+    
+    # Put any authlogic customizations here; see the authlogic help
   end
   
   serialize :roles, Array

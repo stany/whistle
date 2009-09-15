@@ -17,6 +17,10 @@ binarylogic-searchlogic:
     :lib: searchlogic
     :source: http://gems.github.com
     :version: ~> 2.0
+matthuhiggins-foreigner:
+  :options:
+    :lib: foreigner
+    :source: http://gems.github.com
 justinfrench-formtastic:
   :options:
     :lib: formtastic
@@ -54,11 +58,6 @@ ffmike-query_trace:
     :env: development
 
 # test only
-test-unit:
-  :options:
-    :lib: test/unit
-    :version: ">=2.0.3"
-    :env: test
 ffmike-test_benchmark:
   :options:
     :lib: test_benchmark
@@ -71,3 +70,4 @@ rr:
   :options:
     :version: ">=0.10.2"
     :env: test
+  :if: @mocking == "rr"
