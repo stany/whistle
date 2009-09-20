@@ -22,8 +22,8 @@ development:
   database: #{current_app_name}_development
   pool: 5
   username: root
-  password:
-  socket: /tmp/mysql.sock
+  password: inkyinky
+  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -35,7 +35,7 @@ test: &TEST
   database: #{current_app_name}_test<%= ENV['TEST_ENV_NUMBER'] %>
   pool: 5
   username: root
-  password:
+  password: inkyinky
   socket: /tmp/mysql.sock
 
 production:
@@ -44,8 +44,8 @@ production:
   database: #{current_app_name}_production
   pool: 5
   username: root
-  password:
-  socket: /tmp/mysql.sock
+  password: inkyinky
+  socket: /var/run/mysqld/mysqld.sock
 
 staging:
   adapter: mysql
@@ -54,7 +54,7 @@ staging:
   pool: 5
   username: root
   password:
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 cucumber:
  <<: *TEST
