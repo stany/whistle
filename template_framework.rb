@@ -20,7 +20,7 @@ module Rails
     end
 
     # generic accessors for any template
-    attr_accessor :template_paths, :template_options, :template_identifier
+    attr_accessor :template_paths, :template_options, :template_identifier, :gems, :plugins
     # specific accessors for current template
     # TODO: This list should be data driven
     attr_accessor :rails_branch, :database, :exception_handling, :monitoring, :branch_management, :rails_strategy, :link_rails_root,
@@ -459,9 +459,9 @@ module Rails
 
 # Gem management
     def install_gems
-      gems = load_template_config_file('gems.yml')  
-      install_on_current(gems)
-      add_to_project(gems)
+      @gems = load_template_config_file('gems.yml')  
+      install_on_current(@gems)
+      add_to_project(@gems)
     end
 
     # If the geminstaller gem is present, use to to bootstrap the other
@@ -507,8 +507,8 @@ module Rails
 
 #Plugin management
     def install_plugins
-      plugins = load_template_config_file('plugins.yml')  
-      plugins.each do |name, value|
+      @plugins = load_template_config_file('plugins.yml')  
+      @plugins.each do |name, value|
         if value[:if].nil? || eval(value[:if])
           install_plugin name, value[:options]
         end
