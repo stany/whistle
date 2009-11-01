@@ -1,25 +1,4 @@
 ADMIN_DATA_VIEW_AUTHORIZATION = Proc.new { |controller| controller.send("admin_logged_in?") }
 ADMIN_DATA_UPDATE_AUTHORIZATION = Proc.new { |controller| return false }
 
-# Make admin_data play nice with XSS protection
-class AdminData::Util
-
-  class << self
-    alias_method :unsafe_javascript_include_tag, :javascript_include_tag
-    alias_method :unsafe_stylesheet_link_tag, :stylesheet_link_tag
-  end
-  
-  def self.safe_javascript_include_tag(*args)
-    self.unsafe_javascript_include_tag(*args).html_safe!
-  end
-
-  def self.safe_stylesheet_link_tag(*args)
-    self.unsafe_stylesheet_link_tag(*args).html_safe!
-  end
-
-  class << self
-    alias_method :javascript_include_tag, :safe_javascript_include_tag
-    alias_method :stylesheet_link_tag, :safe_stylesheet_link_tag
-  end
-
-end
+#{admin_data_xss_block}
