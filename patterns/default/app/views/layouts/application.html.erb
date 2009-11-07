@@ -11,6 +11,7 @@
   </head>
   <body>
     <div class="container">
+      <%= content_tag :p, Rails.env, :class => Rails.env, :id => "rails-env" unless Rails.env.production? %>
       <%= yield :top_menu %>
       <%= render :partial => 'layouts/flashes' -%>
       
