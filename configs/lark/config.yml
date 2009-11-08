@@ -37,6 +37,14 @@ controller_type: rails
 #   'heroku' to deploy the project to Heroku
 #   'github' to deploy the project to GitHub
 # default option is do-nothing
+#
+# So for example, to deploy the project to GitHub and then call your own 
+# custom CI server setup (which does not actually exist yet!), you'd set up the key
+# this way:
+# post_creation:
+#   github:
+#   ci:
+# You could even have further options under the ci key to control that part of the setup
 post_creation:
   default:
 # GitHub options. These are only used if 'github' is set as one of the post_creation options
