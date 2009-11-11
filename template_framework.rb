@@ -464,7 +464,7 @@ module Rails
       add_to_project(@gems)
     end
 
-    # If the geminstaller gem is present, use to to bootstrap the other
+    # If the geminstaller gem is present, use to bootstrap the other
     # needed gems on to the dev box so that rake succeeds
     def install_on_current(gems)
       begin
