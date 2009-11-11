@@ -2,20 +2,20 @@
 authlogic: 
   :options: 
     :version: ~> 2.0
-mislav-will_paginate:
+will_paginate:
   :options:
     :version: ~> 2.2
     :lib: will_paginate
-    :source: http://gems.github.com
+    :source: http://gemcutter.org
 jscruggs-metric_fu:
   :options:
     :version: ~> 1.1
     :lib: metric_fu
     :source: http://gems.github.com 
-binarylogic-searchlogic:
+searchlogic:
   :options:
     :lib: searchlogic
-    :source: http://gems.github.com
+    :source: http://gemcutter.org
     :version: ~> 2.0
 matthuhiggins-foreigner:
   :options:
@@ -28,20 +28,20 @@ haml:
   :options:
     :version: ~> 2.2
   :if: template_engine == "haml" || design == "compass"
-chriseppstein-compass:
+compass:
   :options:
     :lib: compass
-    :source: http://gems.github.com
+    :source: http://gemcutter.org
   :if: design == "compass"
-chriseppstein-compass-960-plugin:
+compass-960-plugin:
   :options:
     :lib: ninesixty
-    :source: http://gems.github.com
+    :source: http://gemcutter.org
   :if: "design == 'compass' && compass_css_framework =~ /960/"
-josevalim-inherited_resources:
+inherited_resources:
   :options:
     :lib: inherited_resources
-    :source: http://gems.github.com
+    :source: http://gemcutter.org
     :version: >= 0.9.0
   :if: controller_type == "inherited_resources"
 erubis:
@@ -50,10 +50,10 @@ erubis:
     :version: >= 2.6.5
 
 # development only
-cwninja-inaction_mailer: 
+inaction_mailer: 
   :options:
     :lib: inaction_mailer/force_load
-    :source: http://gems.github.com
+    :source: http://gemcutter.org
     :env: development
 ffmike-query_trace:
   :options:
@@ -64,17 +64,17 @@ bullet:
   :options:
     :source: http://gemcutter.org
     :env: development
-ctran-annotate:
+annotate:
   :options:
     :lib: annotate
-    :source: http://gems.github.com
+    :source: http://gemcutter.org
     :env: development
 
 # test only
-thoughtbot-shoulda:
+shoulda:
   :options:
     :lib: shoulda
-    :source: http://gems.github.com
+    :source: http://gemcutter.org
     :env: test
 ffmike-test_benchmark:
   :options:

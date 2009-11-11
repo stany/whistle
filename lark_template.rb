@@ -139,7 +139,13 @@ file 'app/helpers/layout_helper.rb', load_pattern('app/helpers/layout_helper.rb'
 
 # initializers
 initializer 'requires.rb', load_pattern('config/initializers/requires.rb')
-initializer 'admin_data.rb', load_pattern('config/initializers/admin_data.rb')
+
+admin_data_xss_block = ""
+if (rails_branch == "2-3-stable") && plugins.keys.include?('rails_xss')
+  admin_data_xss_block = load_snippet('admin_data_xss_block', 'xss')
+end
+
+initializer 'admin_data.rb', load_pattern('config/initializers/admin_data.rb', 'default', binding)
 
 base64_user_name = Base64.encode64(smtp_username) unless smtp_username.blank? 
 base64_password = Base64.encode64(smtp_password) unless smtp_username.blank? 
