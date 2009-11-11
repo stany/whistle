@@ -26,7 +26,7 @@ You can configure this template to control the application that it generates. Se
 
 h2. Gems
 
-The list of gems that the application will install is housed in @configs/default/gems.yml@. You'll need to have all of the gems installed on your development machine to successfully run the template (otherwise the rake tasks will fail). If you have the geminstaller gem already installed, then the template framework will create a geminstaller.yml file and use geminstaller to bootstrap the necessary gems on to your machine.
+The list of gems that the application will install is housed in @configs/default/gems.yml@. You'll need to have all of the gems installed on your development machine to successfully run the template (otherwise the rake tasks will fail). If you have the geminstaller gem already installed, then the template framework will create a geminstaller.yml file and use geminstaller to bootstrap the necessary gems on to your machine. Maybe you are interested in use "Bundler":http://github.com/wycats/bundler that manages the gem dependencies for your rails application. If you want to use Bundler configure the gem dependencies option in @configs/default/config.yml@.
 
 h2. Customization
 

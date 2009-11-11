@@ -31,10 +31,28 @@ install_plugins
 if @branch_management == "git"
   rake("git:submodules:init")
 end
+commit_state "Added plugins"
 
 # gems
+if @gem_dependencies == "bundler"
+  if yes?("Install bundler with sudo?")
+    run 'sudo gem install bundler'
+  else
+    run 'gem install bundler'
+  end
+end
+
 install_gems
-commit_state "Added plugins and gems"
+
+if @gem_dependencies == "bundler"
+  file ".gitignore", load_pattern('gitignore_with_bundler')
+  commit_state "Bundled gems"
+
+  file "config/preinitializer.rb", load_pattern("config/preinitializer_with_bundler.rb")
+  commit_state "Added preinitializer with bundler"
+else
+  commit_state "Added gems"
+end
 
 # environment updates
 in_root do

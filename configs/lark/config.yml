@@ -5,6 +5,8 @@
 #
 # rails branch options: any branch in the http://github.com/rails/rails/tree/master repo
 rails_branch: 2-3-stable
+# how manage gem dependencies: default, bundler (maybe the future)
+gem_dependencies: default
 # database options: postgresql (default), mysql, sqlite
 database: mysql
 # exception options: exceptional (default), hoptoad

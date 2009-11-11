@@ -54,6 +54,9 @@ module Rails
       @rails_branch = template_options["rails_branch"]
       @rails_branch = "2-3-stable" if @rails_branch.nil?
 
+      @gem_dependencies = template_options["gem_dependencies"]
+      @gem_dependencies = "bundler" if @gem_dependencies.nil?
+
       @database = template_options["database"].nil? ? ask("Which database? postgresql (default), mysql, sqlite").downcase : template_options["database"]
       @database = "postgresql" if @database.nil?
 
@@ -459,9 +462,58 @@ module Rails
 
 # Gem management
     def install_gems
-      @gems = load_template_config_file('gems.yml')  
-      install_on_current(@gems)
-      add_to_project(@gems)
+      @gems = load_template_config_file('gems.yml')
+      if @gem_dependencies == "bundler"
+        create_bundler_file(@gems)
+      else
+        install_on_current(@gems)
+        add_to_project(@gems)
+      end
+    end
+
+    def create_bundler_file(gems)
+      log 'Creating Gemfile...'
+      begin
+        # Transform the gem array to the form that gem bundler wants to see
+        gem_array = []
+        gems.each do |name, value|
+          if value[:if].nil? || eval(value[:if])
+            h = Hash.new
+            h["name"] = "gem '#{name}'"
+            if value[:options] && value[:options][:version]
+              h["version"] = "'#{value[:options][:version]}'"
+            end
+            if value[:options] && value[:options][:lib]
+              h["lib"] = ":required_as => '#{value[:options][:lib]}'"
+            end
+            if value[:options] && value[:options][:env]
+              h["env"] = ":only => :#{value[:options][:env]}"
+            end
+            gem_array.push h
+          end
+        end
+
+        if !gem_array.empty?
+          #geminstaller_hash = {"defaults"=>{"install_options"=>"--no-ri --no-rdoc"}, "gems"=> gem_array}
+          in_root do
+            gemfile_content = <<-END
+source 'http://gems.github.com'
+source 'http://gemcutter.org'
+
+            END
+            gem_array.each do |gem|
+              gem_line = %w(name version lib env).inject([]){ |acum, key| gem[key] ? acum << gem[key] : acum }
+              gemfile_content += gem_line.join(", ") + "\n" 
+            end
+
+            file 'Gemfile', gemfile_content
+            log 'Bundling gems...'
+            run 'gem bundle'
+          end
+        end
+
+      rescue LoadError
+      end
     end
 
     # If the geminstaller gem is present, use to bootstrap the other
