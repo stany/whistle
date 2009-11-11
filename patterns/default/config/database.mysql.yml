@@ -22,7 +22,7 @@ development:
   database: #{current_app_name}_development
   pool: 5
   username: root
-  password: inkyinky
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -35,7 +35,7 @@ test: &TEST
   database: #{current_app_name}_test<%= ENV['TEST_ENV_NUMBER'] %>
   pool: 5
   username: root
-  password: inkyinky
+  password: 
   socket: /tmp/mysql.sock
 
 production:
@@ -44,7 +44,7 @@ production:
   database: #{current_app_name}_production
   pool: 5
   username: root
-  password: inkyinky
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 staging:
