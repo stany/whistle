@@ -134,6 +134,7 @@ initializer 'mail.rb', load_pattern('config/initializers/mail.rb', 'default', bi
 initializer 'date_time_formats.rb', load_pattern('config/initializers/date_time_formats.rb')
 initializer 'query_trace.rb', load_pattern('config/initializers/query_trace.rb')
 initializer 'backtrace_silencers.rb', load_pattern('config/initializers/backtrace_silencers.rb')
+initializer 'haml_with_html5.rb', load_pattern('config/initializers/haml_with_html5.rb')
 
 commit_state "application files and initializers"
 
