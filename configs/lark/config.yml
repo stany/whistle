@@ -16,7 +16,7 @@ monitoring: new_relic
 # vendor branch management: piston (default), braid, git (submodules), none
 branch_management: piston
 # rails strategy: vendored (default), gem, symlinked
-rails_strategy: vendored
+rails_strategy: gem
 # link_rails_root is only used if rails_strategy == symlinked
 link_rails_root: ~/rails
 # IE6 blocking: none, light (default), ie6nomore
@@ -26,7 +26,7 @@ javascript_library: jquery
 # template engine: erb (default), haml
 template_engine: erb
 # Design: none (default), bluetrip, compass
-design: none
+design: bluetrip
 # compass_css_framework is only used if design == compass: blueprint (default), 960
 compass_css_framework: blueprint
 # Require users to activate after creating an account: false (default), true

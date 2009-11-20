@@ -17,10 +17,6 @@ searchlogic:
     :lib: searchlogic
     :source: http://gemcutter.org
     :version: ~> 2.0
-matthuhiggins-foreigner:
-  :options:
-    :lib: foreigner
-    :source: http://gems.github.com
 formtastic:
   :options:
     :source: http://gemcutter.org
@@ -28,26 +24,6 @@ haml:
   :options:
     :version: ~> 2.2
   :if: template_engine == "haml" || design == "compass"
-compass:
-  :options:
-    :lib: compass
-    :source: http://gemcutter.org
-  :if: design == "compass"
-compass-960-plugin:
-  :options:
-    :lib: ninesixty
-    :source: http://gemcutter.org
-  :if: "design == 'compass' && compass_css_framework =~ /960/"
-inherited_resources:
-  :options:
-    :lib: inherited_resources
-    :source: http://gemcutter.org
-    :version: >= 0.9.0
-  :if: controller_type == "inherited_resources"
-erubis:
-  :options:
-    :source: http://gemcutter.org
-    :version: >= 2.6.5
 
 # development only
 inaction_mailer: 
@@ -84,11 +60,6 @@ ffmike-test_benchmark:
 webrat:
   :options:
     :env: test
-rr:
-  :options:
-    :version: ">=0.10.3"
-    :env: test
-  :if: @mocking == "rr"
 mocha:
   :options:
     :version: ">=0.9.7"

@@ -4,7 +4,7 @@ require File.join(File.expand_path(File.dirname(template), File.join(root,'..'))
 
 init_template_framework template, root
 set_template_identifier 'lark'
-add_template_path File.expand_path(File.join(ENV['HOME'],'.big_old_rails_template')), :prepend
+# add_template_path File.expand_path(File.join(ENV['HOME'],'.big_old_rails_template')), :prepend
 load_options
 
 # Delete unnecessary files
@@ -19,40 +19,37 @@ git :init
 # Set up gitignore and commit base state
 file '.gitignore', load_pattern('.gitignore')
 
-if @branch_management == "git"
-  file "lib/tasks/git.rake", load_pattern("lib/tasks/git.rake", "git")
-end
+file "lib/tasks/git.rake", load_pattern("lib/tasks/git.rake", "git")
 
 commit_state "base application"
 
 # plugins
 install_plugins
 
-if @branch_management == "git"
-  rake("git:submodules:init")
-end
+rake("git:submodules:init")
 commit_state "Added plugins"
 
 # gems
-if @gem_dependencies == "bundler"
-  if yes?("Install bundler with sudo?")
-    run 'sudo gem install bundler'
-  else
-    run 'gem install bundler'
-  end
-end
+# if @gem_dependencies == "bundler"
+#   if yes?("Install bundler with sudo?")
+#     run 'sudo gem install bundler'
+#   else
+#     run 'gem install bundler'
+#   end
+# end
 
 install_gems
 
-if @gem_dependencies == "bundler"
-  file ".gitignore", load_pattern('gitignore_with_bundler')
-  commit_state "Bundled gems"
-
-  file "config/preinitializer.rb", load_pattern("config/preinitializer_with_bundler.rb")
-  commit_state "Added preinitializer with bundler"
-else
-  commit_state "Added gems"
-end
+# if @gem_dependencies == "bundler"
+#   file ".gitignore", load_pattern('gitignore_with_bundler')
+#   commit_state "Bundled gems"
+# 
+#   file "config/preinitializer.rb", load_pattern("config/preinitializer_with_bundler.rb")
+#   commit_state "Added preinitializer with bundler"
+# else
+#   commit_state "Added gems"
+# end
+commit_state "Added gems"
 
 # environment updates
 in_root do
@@ -95,36 +92,6 @@ if design == "bluetrip"
   end
 end
 
-if design == "compass"
-  compass_css_framework = template_options["compass_css_framework"].nil? ? ask("Compass CSS Framework? blueprint (default), 960").downcase : template_options["compass_css_framework"]
-  compass_css_framework = "blueprint" if compass_css_framework.blank?
-
-  compass_sass_dir = "app/stylesheets"
-  compass_css_dir = "public/stylesheets"
-
-
-  # load any compass framework plugins
-  if compass_css_framework =~ /960/
-    plugin_require = "-r ninesixty"
-  end
-
-  # build out compass command
-  compass_command = "compass --rails -f #{compass_css_framework} . --css-dir=#{compass_css_dir} --sass-dir=#{compass_sass_dir} "
-  compass_command << plugin_require if plugin_require
-
-  # Require compass during plugin loading
-  file 'vendor/plugins/compass/init.rb', <<-CODE
-  # This is here to make sure that the right version of sass gets loaded (haml 2.2) by the compass requires.
-  require 'compass'
-  CODE
-
-  # integrate it!
-  run "haml --rails ."
-  run compass_command
-
-  puts "Compass (with #{compass_css_framework}) is all setup, have fun!"
-end
-
 if design != "compass" && template_engine == "haml"
   run "haml --rails ."
 end
@@ -149,7 +116,7 @@ application_styles = load_snippet('application_styles', design)
 
 file 'public/stylesheets/application.css', load_pattern('public/stylesheets/application.css', 'default', binding)
 
-generate(:formtastic_stylesheets)
+generate(:formtastic)
 
 file 'app/controllers/application_controller.rb', load_pattern('app/controllers/application_controller.rb', controller_type)
 file 'app/helpers/application_helper.rb', load_pattern('app/helpers/application_helper.rb')
@@ -157,11 +124,6 @@ file 'app/helpers/layout_helper.rb', load_pattern('app/helpers/layout_helper.rb'
 
 # initializers
 initializer 'requires.rb', load_pattern('config/initializers/requires.rb')
-
-admin_data_xss_block = ""
-if (rails_branch == "2-3-stable") && plugins.keys.include?('rails_xss')
-  admin_data_xss_block = load_snippet('admin_data_xss_block', 'xss')
-end
 
 initializer 'admin_data.rb', load_pattern('config/initializers/admin_data.rb', 'default', binding)
 
@@ -172,11 +134,6 @@ initializer 'mail.rb', load_pattern('config/initializers/mail.rb', 'default', bi
 initializer 'date_time_formats.rb', load_pattern('config/initializers/date_time_formats.rb')
 initializer 'query_trace.rb', load_pattern('config/initializers/query_trace.rb')
 initializer 'backtrace_silencers.rb', load_pattern('config/initializers/backtrace_silencers.rb')
-initializer 'erubis_options.rb', load_pattern('config/initializers/erubis_options.rb')
-
-if exception_handling == "hoptoad"
-  initializer 'hoptoad.rb', load_pattern('config/initializers/hoptoad.rb')
-end
 
 commit_state "application files and initializers"
 
@@ -192,18 +149,10 @@ file 'lib/tasks/gems.rake', load_pattern('lib/tasks/gems.rake')
 commit_state "deployment files"
 
 # error handling
-if exception_handling == "exceptional"
-  file 'config/exceptional.yml', load_pattern('config/exceptional.yml', 'default', binding)
-end
+file 'config/exceptional.yml', load_pattern('config/exceptional.yml', 'default', binding)
 
 # performance monitoring
-if monitoring == "new_relic"
-  file 'config/newrelic.yml', load_pattern('config/newrelic.yml', 'default', binding)
-end
-
-if monitoring == "scout"
-  file 'config/scout.yml', load_pattern('config/scout.yml', 'default', binding)
-end
+file 'config/newrelic.yml', load_pattern('config/newrelic.yml', 'default', binding)
 
 # database
 file 'config/database.yml', load_pattern("config/database.#{database}.yml", 'default', binding)
@@ -224,12 +173,8 @@ commit_state "configuration files"
 file 'test/exemplars/sample_exemplar.rb', load_pattern('test/exemplars/sample_exemplar.rb')
 mock_require = ""
 mock_include = ""
-if @mocking == "rr"
-  mock_require = "require 'rr'"
-  mock_include = "  include RR::Adapters::TestUnit"
-elsif @mocking == "mocha"
-  mock_require = "require 'mocha'"
-end
+#mocking with mocha
+mock_require = "require 'mocha'"
 file 'test/test_helper.rb', load_pattern('test/test_helper.rb', 'default', binding)
 file 'config/preinitializer.rb', load_pattern('config/preinitializer.rb')
 
@@ -244,11 +189,8 @@ file 'test/unit/notifier_test.rb', load_pattern('test/unit/notifier_test.rb', 'd
 welcome_callback = ""
 extra_user_tests = ""
 if require_activation
-  if @mocking == "rr"
-    extra_user_tests = load_snippet('extra_user_tests', 'require_activation')
-  elsif @mocking == "mocha"
-    extra_user_tests = load_snippet('extra_user_tests_mocha', 'require_activation')
-  end
+  #mocking with mocha
+  extra_user_tests = load_snippet('extra_user_tests_mocha', 'require_activation')
 else
   welcome_callback = "should_callback :send_welcome_email, :after_create"
 end
@@ -314,18 +256,10 @@ commit_state "basic tests"
 # authlogic setup
 
 account_create_block = ""
-if controller_type == 'default'
-  if require_activation
-    account_create_block = load_snippet('account_create_block', 'default_require_activation')
-  else
-    account_create_block = load_snippet('account_create_block')
-  end
-elsif controller_type == 'inherited_resources'
-  if require_activation
-    account_create_block = load_snippet('account_create_block', 'inherited_resources_require_activation')
-  else
-    account_create_block = load_snippet('account_create_block', 'inherited_resources')
-  end
+if require_activation
+  account_create_block = load_snippet('account_create_block', 'default_require_activation')
+else
+  account_create_block = load_snippet('account_create_block')
 end
 
 file 'app/controllers/accounts_controller.rb', load_pattern('app/controllers/accounts_controller.rb', controller_type, binding)
@@ -466,22 +400,14 @@ if template_engine == 'haml'
   erb_to_haml("app/views")
 end
 
-if template_engine == "haml" || design == "compass"
-  FileUtils.mkdir("public/stylesheets/sass")
-  Dir["public/stylesheets/**/*.css"].each do |file|
-    sass_file = file.gsub(/\.css$/, '.sass')
-    run "css2sass #{file} #{sass_file}"
-    run "mv #{sass_file} public/stylesheets/sass/#{File.basename(sass_file)}"
-  end
-end
-
-if design == "compass"
-  in_root do
-    Dir["public/stylesheets/**/*.sass"].each do |file|
-      run "mv #{file} app/stylesheets/sass/#{File.basename(file)}"
-    end
-  end
-end
+# if template_engine == "haml" || design == "compass"
+#   FileUtils.mkdir("public/stylesheets/sass")
+#   Dir["public/stylesheets/**/*.css"].each do |file|
+#     sass_file = file.gsub(/\.css$/, '.sass')
+#     run "css2sass #{file} #{sass_file}"
+#     run "mv #{sass_file} public/stylesheets/sass/#{File.basename(sass_file)}"
+#   end
+# end
 
 # databases
 rake('db:create')
@@ -503,19 +429,19 @@ commit_state "metric_fu setup"
 # vendor rails if desired
 # takes the edge of whatever branch is specified in the config file
 # defaults to 2-3-stable at the moment
-if rails_strategy == "vendored" || rails_strategy == "symlinked"
-  if rails_strategy == "vendored"
-    install_rails :branch => rails_branch
-    commit_state "vendored rails"
-  elsif rails_strategy == "symlinked"
-    inside('vendor') do
-      run("ln -s #{link_rails_root} rails")
-    end
-  end
-  update_app
-  remove_prototype if @javascript_library != "prototype"
-  commit_state "updated rails files from vendored copy"
-end
+# if rails_strategy == "vendored" || rails_strategy == "symlinked"
+#   if rails_strategy == "vendored"
+#     install_rails :branch => rails_branch
+#     commit_state "vendored rails"
+#   elsif rails_strategy == "symlinked"
+#     inside('vendor') do
+#       run("ln -s #{link_rails_root} rails")
+#     end
+#   end
+#   update_app
+#   remove_prototype if @javascript_library != "prototype"
+#   commit_state "updated rails files from vendored copy"
+# end
 
 # set up branches
 git_branch_setup
@@ -525,21 +451,9 @@ execute_post_creation_hooks
 
 # Success!
 puts "SUCCESS!"
-if exception_handling == "exceptional"
-  puts '  Set up new app at http://getexceptional.com/apps'
-  puts '  Put the right API key in config/exceptional.yml'
-end
-if exception_handling == "hoptoad"
-  puts '  Set up new app at https://<your subdomain>.hoptoadapp.com/projects/new'
-  puts '  Put the right API key in config/initializers/hoptoad.rb'
-end
-if monitoring == "new_relic"
-  puts '  Put the right API key in config/new_relic.yml'
-end
-if monitoring == "scout"
-  puts '  Put the right plugin ID in config/scout.yml'
-  puts '  Install the scout agent gem on the production server (sudo gem install scout_agent)'
-end
+puts '  Set up new app at http://getexceptional.com/apps'
+puts '  Put the right API key in config/exceptional.yml'
+puts '  Put the right API key in config/new_relic.yml'
 puts '  Create public/favicon.ico'
 puts '  Put the production database password in config/database.yml'
 puts '  Put mail server information in mail.rb'

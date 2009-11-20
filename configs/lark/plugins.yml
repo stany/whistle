@@ -23,10 +23,6 @@ parallel_specs:
 rack-bug: 
   :options: 
     :git: :git://github.com/brynary/rack-bug.git
-rails_xss:
-  :options:
-    :git: :git://github.com/NZKoz/rails_xss.git
-  :if: rails_branch == "2-3-stable"
 rubaidhstrano: 
   :options: 
     :git: :git://github.com/rubaidh/rubaidhstrano.git
@@ -51,20 +47,12 @@ new_relic:
   :options: 
     :git: :git://github.com/newrelic/rpm.git
   :if: monitoring == "new_relic"
-scout_rails_instrumentation: 
-  :options: 
-    :git: :git://github.com/highgroove/scout_rails_instrumentation.git
-  :if: monitoring == "scout"
 
 # Optional exception handling
 exceptional: 
   :options: 
     :git: :git://github.com/contrast/exceptional.git
   :if: exception_handling == "exceptional"
-hoptoad_notifier: 
-  :options: 
-    :git: :git://github.com/thoughtbot/hoptoad_notifier.git
-  :if: exception_handling == "hoptoad"
 
 # Optional javascript library
 jrails:
