@@ -98,14 +98,14 @@ end
 
 flash_class =  load_snippet('flash_class', design)
 
-file 'app/views/layouts/_flashes.html.erb', load_pattern('app/views/layouts/_flashes.html.erb', 'default', binding)
+file 'app/views/layouts/_flashes.html.haml', load_pattern('app/views/layouts/_flashes.html.haml', 'default', binding)
 
 javascript_include_tags = load_snippet('javascript_include_tags', @javascript_library)
 
 extra_stylesheet_tags = load_snippet('extra_stylesheet_tags', design)
 footer_class = load_snippet('footer_class', design)
 
-file 'app/views/layouts/application.html.erb', load_pattern('app/views/layouts/application.html.erb', 'default', binding)
+file 'app/views/layouts/application.html.haml', load_pattern('app/views/layouts/application.html.haml', 'default', binding)
 
 # rakefile for use with inaction_mailer
 rakefile 'mail.rake', load_pattern('lib/tasks/mail.rake')
@@ -305,41 +305,41 @@ end
 file 'app/models/user_session.rb', load_pattern('app/models/user_session.rb')
 
 if require_activation
-  file 'app/views/activations/new.html.erb', load_pattern('app/views/activations/new.html.erb', 'require_activation')
-  file 'app/views/notifier/activation_instructions.html.erb', load_pattern('app/views/notifier/activation_instructions.html.erb', 'require_activation')
+  file 'app/views/activations/new.html.haml', load_pattern('app/views/activations/new.html.haml', 'require_activation')
+  file 'app/views/notifier/activation_instructions.html.haml', load_pattern('app/views/notifier/activation_instructions.html.haml', 'require_activation')
 end
 
-file 'app/views/notifier/password_reset_instructions.html.erb', load_pattern('app/views/notifier/password_reset_instructions.html.erb')
-file 'app/views/notifier/welcome_email.html.erb', load_pattern('app/views/notifier/welcome_email.html.erb')
-file 'app/views/password_resets/edit.html.erb', load_pattern('app/views/password_resets/edit.html.erb')
-file 'app/views/password_resets/new.html.erb', load_pattern('app/views/password_resets/new.html.erb')
+file 'app/views/notifier/password_reset_instructions.html.haml', load_pattern('app/views/notifier/password_reset_instructions.html.haml')
+file 'app/views/notifier/welcome_email.html.haml', load_pattern('app/views/notifier/welcome_email.html.haml')
+file 'app/views/password_resets/edit.html.haml', load_pattern('app/views/password_resets/edit.html.haml')
+file 'app/views/password_resets/new.html.haml', load_pattern('app/views/password_resets/new.html.haml')
 
 if design == "bluetrip"
-  file 'app/views/user_sessions/new.html.erb', load_pattern('app/views/user_sessions/new.html.erb', 'bluetrip')
+  file 'app/views/user_sessions/new.html.haml', load_pattern('app/views/user_sessions/new.html.haml', 'bluetrip')
 else
-  file 'app/views/user_sessions/new.html.erb', load_pattern('app/views/user_sessions/new.html.erb')
+  file 'app/views/user_sessions/new.html.haml', load_pattern('app/views/user_sessions/new.html.haml')
 end
 
-file 'app/views/users/index.html.erb', load_pattern('app/views/users/index.html.erb')
+file 'app/views/users/index.html.haml', load_pattern('app/views/users/index.html.haml')
 
 password_input_block = ""
 password_input_block = load_snippet('password_input_block') unless require_activation
 
-file 'app/views/users/_form.html.erb', load_pattern('app/views/users/_form.html.erb', 'default', binding)
+file 'app/views/users/_form.html.haml', load_pattern('app/views/users/_form.html.haml', 'default', binding)
 
 if design == "bluetrip" 
-  file 'app/views/users/edit.html.erb', load_pattern('app/views/users/edit.html.erb', 'bluetrip')
+  file 'app/views/users/edit.html.haml', load_pattern('app/views/users/edit.html.haml', 'bluetrip')
 else
-  file 'app/views/users/edit.html.erb', load_pattern('app/views/users/edit.html.erb')
+  file 'app/views/users/edit.html.haml', load_pattern('app/views/users/edit.html.haml')
 end
 
 if design == "bluetrip"
-  file 'app/views/users/new.html.erb', load_pattern('app/views/users/new.html.erb', 'bluetrip')
+  file 'app/views/users/new.html.haml', load_pattern('app/views/users/new.html.haml', 'bluetrip')
 else
-  file 'app/views/users/new.html.erb', load_pattern('app/views/users/new.html.erb')
+  file 'app/views/users/new.html.haml', load_pattern('app/views/users/new.html.haml')
 end
 
-file 'app/views/users/show.html.erb', load_pattern('app/views/users/show.html.erb')
+file 'app/views/users/show.html.haml', load_pattern('app/views/users/show.html.haml')
 
 if require_activation
   file 'db/migrate/01_create_users.rb', load_pattern('db/migrate/01_create_users.rb', 'require_activation')
@@ -375,10 +375,10 @@ if design == "bluetrip"
   main_with_left_menu_class = load_snippet("main_with_left_menu_class", "bluetrip")
 end
 
-file 'app/views/pages/home.html.erb', load_pattern('app/views/pages/home.html.erb', 'default', binding)
-file 'app/views/pages/css_test.html.erb', load_pattern('app/views/pages/css_test.html.erb')
+file 'app/views/pages/home.html.haml', load_pattern('app/views/pages/home.html.haml', 'default', binding)
+file 'app/views/pages/css_test.html.haml', load_pattern('app/views/pages/css_test.html.haml')
 if ie6_blocking == 'light'
-  file 'app/views/pages/upgrade.html.erb', load_pattern('app/views/pages/upgrade.html.erb', 'default', binding)
+  file 'app/views/pages/upgrade.html.haml', load_pattern('app/views/pages/upgrade.html.haml', 'default', binding)
 end
 
 file 'doc/README_FOR_APP', load_pattern('doc/README_FOR_APP', 'default', binding)
@@ -396,11 +396,11 @@ file 'config/routes.rb', load_pattern('config/routes.rb', 'default', binding)
 commit_state "routing"
 
 # optionally convert html/erb/css to haml/sass
-if template_engine == 'haml'
-  erb_to_haml("app/views")
-end
+# if template_engine == 'haml'
+#   erb_to_haml("app/views")
+# end
 
-# if template_engine == "haml" || design == "compass"
+# if template_engine == "haml" && design == "compass"
 #   FileUtils.mkdir("public/stylesheets/sass")
 #   Dir["public/stylesheets/**/*.css"].each do |file|
 #     sass_file = file.gsub(/\.css$/, '.sass')

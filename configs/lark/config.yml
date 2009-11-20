@@ -24,7 +24,7 @@ ie6_blocking: light
 # javascript library: prototype (default), jquery
 javascript_library: jquery
 # template engine: erb (default), haml
-template_engine: erb
+template_engine: haml
 # Design: none (default), bluetrip, compass
 design: bluetrip
 # compass_css_framework is only used if design == compass: blueprint (default), 960
