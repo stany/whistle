@@ -14,7 +14,7 @@
     = yield :head
   
   %body#home
-    %header
+    %header.container.showgrid
       %h1 Environmental Brand
       %h4 Your Company Tagline Here
       %nav
@@ -38,14 +38,13 @@
                 %span About Us
         %img{ :src => "images/navi_right.jpg", :alt =>"" }
       
-    %section.container
-      = yield :top_menu
-      = render :partial => 'layouts/flashes'
-      - if show_title?
-        %h1= h yield(:title)
-      = yield
+    %section.container.showgrid
+      %article#flash
+        = render :partial => 'layouts/flashes'
+      %article#main
+        = yield
     
-    %aside
+    %aside.container.showgrid
       %h3 My Aside Major Projects
       %dl
         %dt
@@ -60,7 +59,7 @@
           %a{ :href => "http://digwp.com"} Digging Into WordPress
         %dd Learn about WordPress</dd>
 
-    %footer.footer_class
+    %footer.container.showgrid
       %h4 People I Enjoy
       %ul.col
         %li
@@ -70,4 +69,3 @@
         %li
           %a{ :href => "http://fastfoodreviewed.com"} Jesse Lynch
       &copy;2009 Whistle
-    </footer>
