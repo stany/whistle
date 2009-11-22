@@ -1,6 +1,9 @@
 class PagesController < ApplicationController  
   def home
   end
+
+  def whistle
+  end
   
   def css_test
   end

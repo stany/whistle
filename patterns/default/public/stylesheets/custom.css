@@ -181,3 +181,56 @@ footer div.design {
   padding-top:13px;
 }
 
+/* Main section with photos */
+#dvbannerbgcontainer {
+  float:left;
+  background-image:url(../images/bg.jpg);
+  background-repeat:repeat;
+  background-position:top;
+  border-bottom:1px solid #D5D4CD;
+  border-top:1px solid #D5D4CD;
+  margin:0px;
+  padding:40px 0;
+}
+
+#dvbannerbgcontainer .lftcontainer {
+  float:left;
+  font-size:0px;
+  margin:0px;
+}
+
+.lftcontainer .dvbannerleft {
+  float:left;
+  margin:0px;
+  padding-bottom:15px;
+}
+
+.dvbannerleft img {
+  float:left;
+  margin:0px;
+  padding:0px 11px 0px 0px;
+  font-size:0px;
+}
+
+.dvbannerleft p {
+  float:left;
+  font-size:12px;
+  text-align:left;
+  color:#424037;
+  background-color:#FBF8A8;
+  margin:6px 0px 0px 0px;
+  padding:6px 0px 5px 8px;
+  line-height:1.2em;
+}
+
+.dvbannerleft p b {
+  font-size:13px;
+  font-weight:bold;
+}
+
+#dvbannerbgcontainer #dvbanner {
+  float:left;
+  font-size:0px;
+  margin:0px;
+}
+
