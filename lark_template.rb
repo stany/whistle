@@ -114,8 +114,29 @@ rakefile 'annotate.rake', load_pattern('lib/tasks/annotate.rake')
 
 application_styles = load_snippet('application_styles', design)
 
-file 'public/stylesheets/application.css', load_pattern('public/stylesheets/application.css', 'default', binding)
-file 'public/stylesheets/custom.css', load_pattern('public/stylesheets/custom.css', 'default', binding)
+#file 'public/stylesheets/application.css', load_pattern('public/stylesheets/application.css', 'default', binding)
+
+# design template files - file list was generated
+file 'public/stylesheets/custom.css', load_pattern('public/stylesheets/custom.css')
+#images
+file 'public/images/banner.jpg',      load_pattern('public/images/banner.jpg')
+file 'public/images/bg.jpg',          load_pattern('public/images/bg.jpg')
+file 'public/images/body_bg.jpg',     load_pattern('public/images/body_bg.jpg')
+file 'public/images/footer.jpg',      load_pattern('public/images/footer.jpg')
+file 'public/images/h_line.jpg',      load_pattern('public/images/h_line.jpg')
+file 'public/images/home_icon.jpg',   load_pattern('public/images/home_icon.jpg')
+file 'public/images/learn.jpg',       load_pattern('public/images/learn.jpg')
+file 'public/images/learn_over.jpg',  load_pattern('public/images/learn_over.jpg')
+file 'public/images/left_foot.jpg',   load_pattern('public/images/left_foot.jpg')
+file 'public/images/light.jpg',       load_pattern('public/images/light.jpg')
+file 'public/images/navi_left.jpg',   load_pattern('public/images/navi_left.jpg')
+file 'public/images/navi_right.jpg',  load_pattern('public/images/navi_right.jpg')
+file 'public/images/page_bg.jpg',     load_pattern('public/images/page_bg.jpg')
+file 'public/images/right_foot.jpg',  load_pattern('public/images/right_foot.jpg')
+file 'public/images/rpt.jpg',         load_pattern('public/images/rpt.jpg')
+file 'public/images/studio.jpg',      load_pattern('public/images/studio.jpg')
+file 'public/images/tabright1.gif',   load_pattern('public/images/tabright1.gif')
+file 'public/images/tableft1.gif',    load_pattern('public/images/tableft1.gif')
 
 generate(:formtastic)
 
@@ -378,6 +399,7 @@ if design == "bluetrip"
 end
 
 file 'app/views/pages/home.html.haml', load_pattern('app/views/pages/home.html.haml', 'default', binding)
+file 'app/views/pages/whistle.html.haml', load_pattern('app/views/pages/whistle.html.haml', 'default', binding)
 file 'app/views/pages/css_test.html.haml', load_pattern('app/views/pages/css_test.html.haml')
 if ie6_blocking == 'light'
   file 'app/views/pages/upgrade.html.haml', load_pattern('app/views/pages/upgrade.html.haml', 'default', binding)

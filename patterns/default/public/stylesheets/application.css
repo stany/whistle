@@ -1,4 +1,4 @@
-/* @group Browser Reset */
+/* @group Browser Reset 
 
 html, body {
   font-size: 12.5px; }
@@ -34,10 +34,11 @@ table {
 ul {
   list-style: none; }
 
-  /* @end */
 
 #{application_styles}
 
 #rails-env { position: fixed; left: 1em; font-weight: bold; padding: .2em 0.9em; text-transform: uppercase; opacity: 0.7; display: none }
 #rails-env.staging { color: #000; background: #ffff00; border: 2px solid #cccc20; border-top: none; display: block }
 #rails-env.development { color: #fff; background: #ff0000; border: 2px solid #cc2020; border-top: none; display: block }
+
+*/
