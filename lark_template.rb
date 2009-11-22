@@ -115,6 +115,7 @@ rakefile 'annotate.rake', load_pattern('lib/tasks/annotate.rake')
 application_styles = load_snippet('application_styles', design)
 
 file 'public/stylesheets/application.css', load_pattern('public/stylesheets/application.css', 'default', binding)
+file 'public/stylesheets/custom.css', load_pattern('public/stylesheets/custom.css', 'default', binding)
 
 generate(:formtastic)
 
