@@ -61,13 +61,14 @@
           %a{ :href => "http://digwp.com"} Digging Into WordPress
         %dd Learn about WordPress</dd>
 
-    %footer.container.showgrid
-      %h4 People I Enjoy
-      %ul.col
-        %li
-          %a{ :href => "http://fastfoodreviewed.com"} Jesse Lynch
-        %li
-          %a{ :href => "http://fastfoodreviewed.com"} Jesse Lynch
-        %li
-          %a{ :href => "http://fastfoodreviewed.com"} Jesse Lynch
-      &copy;2009 Whistle
+    %footer.container.span-24
+      #footer_links.span-18
+        %span Copyright &copy; 2009 Stany Inc. 
+        %a{ :href => "#", :title => "Home" } Home
+        %a{ :href => "#", :title => "Services" } Services
+        %a{ :href => "#", :title => "Portfolio" } Portfolio
+        %a{ :href => "#", :title => "Blog" } Blog
+      .design.span-4.last
+        %a{ :href => "#" }
+          %img{ :src => "../images/studio.jpg", :alt => "Studio7designs", :border => "0", :title => "Studio7designs" }
+

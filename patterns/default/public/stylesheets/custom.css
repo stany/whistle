@@ -139,9 +139,45 @@ header section.logo h4{
   background-position:100% -42px;
   color:#FFFFFF;
 }
-    
-/*-----------------------------Menu ------------------------------*/
-    
-img {
-  border: none;
-} 
+
+/* Footer */
+footer {
+  margin:0px;
+  padding:0px 0px 0px 0px;
+  background-image:url(../images/footer.jpg);
+  background-repeat:no-repeat;
+  margin:0px;
+  padding:0px 0px 50px 0px;
+}
+
+footer div {
+  font-size:12px;
+  text-align:left;
+  color:#938A82;
+  margin:0px;
+  padding:25px 0px 0px 20px;
+}
+
+footer div#footer_links a {
+  text-decoration:none;
+  color:#938A82;
+  padding-left:5px;
+  padding-right:5px;
+}
+
+footer div#footer_links a:hover {
+  text-decoration:underline;
+  color:#938A82;
+}
+
+footer div#footer_links span {
+  padding:0px 10px 0px 0px;
+}
+
+footer div.design {
+  margin:0px;
+  padding:0px;
+  font-size:0px;
+  padding-top:13px;
+}
+
