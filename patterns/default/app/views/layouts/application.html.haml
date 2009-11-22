@@ -14,11 +14,9 @@
     = yield :head
   
   %body#home
-    %header.container.showgrid
-      %h1 Environmental Brand
-      %h4 Your Company Tagline Here
+    %header.container
       %nav
-        %img{ :src => "images/navi_left.jpg", :alt =>"" }
+        %img{ :src => "../images/navi_left.jpg", :alt =>"" }
         #tabs1
           %ul
             %li#current
@@ -36,7 +34,11 @@
             %li
               %a{ :href => "#" }
                 %span About Us
-        %img{ :src => "images/navi_right.jpg", :alt =>"" }
+        %img{ :src => "../images/navi_right.jpg", :alt =>"" }
+
+      %section.logo.span-10
+        %h1 Environmental Brand
+        %h4 Your Company Tagline Here
       
     %section.container.showgrid
       %article#flash
