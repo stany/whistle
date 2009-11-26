@@ -1,6 +1,6 @@
 require 'base64'
 require File.join(File.expand_path(File.dirname(template), File.join(root,'..')), 'template_framework')
-require File.join(File.expand_path(File.dirname(template), File.join(root,'..')), 'erb_to_haml')
+#require File.join(File.expand_path(File.dirname(template), File.join(root,'..')), 'erb_to_haml')
 
 init_template_framework template, root
 set_template_identifier 'lark'
@@ -92,7 +92,7 @@ if design == "bluetrip"
   end
 end
 
-if design != "compass" && template_engine == "haml"
+if template_engine == "haml"
   run "haml --rails ."
 end
 
@@ -181,11 +181,7 @@ file 'config/newrelic.yml', load_pattern('config/newrelic.yml', 'default', bindi
 file 'config/database.yml', load_pattern("config/database.#{database}.yml", 'default', binding)
 file 'db/populate/01_sample_seed.rb', load_pattern('db/populate/01_sample_seed.rb')
 
-if require_activation
-  account_create_flash = "Your account has been created. Please check your e-mail for your account activation instructions."
-else
-  account_create_flash = "Account registered!"
-end
+account_create_flash = "Account registered!"
 
 # locale
 file 'config/locales/en.yml', load_pattern('config/locales/en.yml', 'default', binding)
@@ -202,21 +198,12 @@ file 'test/test_helper.rb', load_pattern('test/test_helper.rb', 'default', bindi
 file 'config/preinitializer.rb', load_pattern('config/preinitializer.rb')
 
 extra_notifier_test = ""
-if require_activation
-  extra_notifier_test = load_snippet('extra_notifier_test', 'require_activation')
-  extra_notifier_test.sub!('#{notifier_email_from}', notifier_email_from)
-end
 
 file 'test/unit/notifier_test.rb', load_pattern('test/unit/notifier_test.rb', 'default', binding)
 
 welcome_callback = ""
 extra_user_tests = ""
-if require_activation
-  #mocking with mocha
-  extra_user_tests = load_snippet('extra_user_tests_mocha', 'require_activation')
-else
-  welcome_callback = "should_callback :send_welcome_email, :after_create"
-end
+welcome_callback = "should_callback :send_welcome_email, :after_create"
 
 file 'test/unit/user_test.rb', load_pattern('test/unit/user_test.rb', 'default', binding)
 
@@ -231,27 +218,14 @@ file 'test/unit/user_session_test.rb', load_pattern('test/unit/user_session_test
 file 'test/unit/helpers/application_helper_test.rb', load_pattern('test/unit/helpers/application_helper_test.rb', 'default', binding)
 
 
-if require_activation
-  file 'test/functional/accounts_controller_test.rb', load_pattern('test/functional/accounts_controller_test.rb', 'require_activation', binding)
-  file 'test/functional/activations_controller_test.rb', load_pattern('test/functional/activations_controller_test.rb', 'require_activation', binding)
-else
-  file 'test/functional/accounts_controller_test.rb', load_pattern('test/functional/accounts_controller_test.rb', 'default', binding)
-end
+file 'test/functional/accounts_controller_test.rb', load_pattern('test/functional/accounts_controller_test.rb', 'default', binding)
 
 generate_user_block = ""
-if require_activation
-  generate_user_block = load_snippet('generate_user_block', 'require_activation')
-else
-  generate_user_block = load_snippet('generate_user_block')
-end
+generate_user_block = load_snippet('generate_user_block')
 
 file 'test/functional/application_controller_test.rb', load_pattern('test/functional/application_controller_test.rb', 'default', binding)
 
-if require_activation
-  file 'test/functional/users_controller_test.rb', load_pattern('test/functional/users_controller_test.rb', 'require_activation', binding)
-else
-  file 'test/functional/users_controller_test.rb', load_pattern('test/functional/users_controller_test.rb', 'default', binding)
-end
+file 'test/functional/users_controller_test.rb', load_pattern('test/functional/users_controller_test.rb', 'default', binding)
 
 file 'test/functional/user_sessions_controller_test.rb', load_pattern('test/functional/user_sessions_controller_test.rb', 'default', binding)
 
@@ -266,9 +240,7 @@ file 'test/functional/password_resets_controller_test.rb', load_pattern('test/fu
 new_user_contained_text = 'I18n.t("flash.accounts.create.notice")'
 
 new_user_extra_fields = ""
-unless require_activation
-  new_user_extra_fields = load_snippet('new_user_extra_fields')
-end
+new_user_extra_fields = load_snippet('new_user_extra_fields')
 
 file 'test/integration/new_user_can_register_test.rb', load_pattern('test/integration/new_user_can_register_test.rb', 'default', binding)
 file 'test/integration/user_can_login_test.rb', load_pattern('test/integration/user_can_login_test.rb', 'default', binding)
@@ -279,74 +251,37 @@ commit_state "basic tests"
 # authlogic setup
 
 account_create_block = ""
-if require_activation
-  account_create_block = load_snippet('account_create_block', 'default_require_activation')
-else
-  account_create_block = load_snippet('account_create_block')
-end
+account_create_block = load_snippet('account_create_block')
 
 file 'app/controllers/accounts_controller.rb', load_pattern('app/controllers/accounts_controller.rb', controller_type, binding)
-
-if require_activation
-  file 'app/controllers/activations_controller.rb', load_pattern('app/controllers/activations_controller.rb', "#{controller_type}_require_activation")
-end
 
 file 'app/controllers/password_resets_controller.rb', load_pattern('app/controllers/password_resets_controller.rb', controller_type)
 file 'app/controllers/user_sessions_controller.rb', load_pattern('app/controllers/user_sessions_controller.rb', controller_type)
 
 user_create_block = ""
-if controller_type == 'default'
-  if require_activation
-    user_create_block = load_snippet('user_create_block', 'default_require_activation')
-  else
-    user_create_block = load_snippet('user_create_block')
-  end
-elsif controller_type == 'inherited_resources'
-  if require_activation
-    user_create_block = load_snippet('user_create_block', 'inherited_resources_require_activation')
-  else
-    user_create_block = load_snippet('user_create_block', 'inherited_resources')
-  end
-end
-
+user_create_block = load_snippet('user_create_block')
 
 file 'app/controllers/users_controller.rb' , load_pattern('app/controllers/users_controller.rb', controller_type, binding)
 
 activation_instructions_block = ""
-if require_activation
-  activation_instructions_block = load_snippet('activation_instructions_block', 'require_activation')
-end
-
 file 'app/models/notifier.rb', load_pattern('app/models/notifier.rb', 'default', binding)
 
-if require_activation
-  file 'app/models/user.rb', load_pattern('app/models/user.rb', 'require_activation')
-else
-  file 'app/models/user.rb', load_pattern('app/models/user.rb')
-end
+file 'app/models/user.rb', load_pattern('app/models/user.rb')
 
 file 'app/models/user_session.rb', load_pattern('app/models/user_session.rb')
-
-if require_activation
-  file 'app/views/activations/new.html.haml', load_pattern('app/views/activations/new.html.haml', 'require_activation')
-  file 'app/views/notifier/activation_instructions.html.haml', load_pattern('app/views/notifier/activation_instructions.html.haml', 'require_activation')
-end
 
 file 'app/views/notifier/password_reset_instructions.html.haml', load_pattern('app/views/notifier/password_reset_instructions.html.haml')
 file 'app/views/notifier/welcome_email.html.haml', load_pattern('app/views/notifier/welcome_email.html.haml')
 file 'app/views/password_resets/edit.html.haml', load_pattern('app/views/password_resets/edit.html.haml')
 file 'app/views/password_resets/new.html.haml', load_pattern('app/views/password_resets/new.html.haml')
 
-if design == "bluetrip"
-  file 'app/views/user_sessions/new.html.haml', load_pattern('app/views/user_sessions/new.html.haml', 'bluetrip')
-else
-  file 'app/views/user_sessions/new.html.haml', load_pattern('app/views/user_sessions/new.html.haml')
-end
+file 'app/views/user_sessions/new.html.haml', load_pattern('app/views/user_sessions/new.html.haml', 'bluetrip')
+#else: file 'app/views/user_sessions/new.html.haml', load_pattern('app/views/user_sessions/new.html.haml')
 
 file 'app/views/users/index.html.haml', load_pattern('app/views/users/index.html.haml')
 
 password_input_block = ""
-password_input_block = load_snippet('password_input_block') unless require_activation
+password_input_block = load_snippet('password_input_block')
 
 file 'app/views/users/_form.html.haml', load_pattern('app/views/users/_form.html.haml', 'default', binding)
 
@@ -364,11 +299,8 @@ end
 
 file 'app/views/users/show.html.haml', load_pattern('app/views/users/show.html.haml')
 
-if require_activation
-  file 'db/migrate/01_create_users.rb', load_pattern('db/migrate/01_create_users.rb', 'require_activation')
-else
-  file 'db/migrate/01_create_users.rb', load_pattern('db/migrate/01_create_users.rb')
-end
+# file 'db/migrate/01_create_users.rb', load_pattern('db/migrate/01_create_users.rb', 'require_activation')
+file 'db/migrate/01_create_users.rb', load_pattern('db/migrate/01_create_users.rb')
 
 file 'db/migrate/02_create_sessions.rb', load_pattern('db/migrate/02_create_sessions.rb')
 
@@ -410,9 +342,6 @@ file 'doc/README_FOR_APP', load_pattern('doc/README_FOR_APP', 'default', binding
 commit_state "static pages"
 
 activation_routes = ""
-if require_activation
-  activation_routes = load_snippet('activation_routes', 'require_activation')
-end
 
 # simple default routing
 file 'config/routes.rb', load_pattern('config/routes.rb', 'default', binding)
