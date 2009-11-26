@@ -6,10 +6,11 @@ class AccountsControllerTest < ActionController::TestCase
   should_have_before_filter :require_user, :only => [:show, :edit, :update]
   
   context "routing" do
-    should_rest_route :new, :edit, :show, :update, :create, :singular => true
+    should_rest_route :new, :edit, :show, :update, :singular => true
     
     # TODO: Figure out what to do about this
     # should_route :get, "/register", :action=>"new", :controller=>"accounts"
+    # should_rest_route :create, :singular => true
     
     context "named routes" do
       setup do
