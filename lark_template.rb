@@ -98,7 +98,7 @@ end
 
 flash_class =  load_snippet('flash_class', design)
 
-file 'app/views/layouts/_flashes.html.haml', load_pattern('app/views/layouts/_flashes.html.haml', 'default', binding)
+file 'app/views/layouts/_flashes.html.haml', load_pattern('app/views/layouts/_flashes.html.haml', 'default')
 
 javascript_include_tags = load_snippet('javascript_include_tags', @javascript_library)
 
