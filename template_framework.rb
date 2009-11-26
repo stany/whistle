@@ -145,7 +145,8 @@ module Rails
         paths = template_paths
 
         paths.each do |template_path|
-          full_file_name = File.join(template_path, file_type.to_s.pluralize, file_group, base_name)
+          full_file_name = file_type == :config ? File.join(template_path, file_type.to_s, '', base_name) :
+                                                  File.join(template_path, file_type.to_s.pluralize, file_group, base_name)
           debug_log "Searching for #{full_file_name} ... "
 
           next unless File.exists? full_file_name
