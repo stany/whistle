@@ -94,9 +94,13 @@ end
 
 file 'app/views/layouts/_flashes.html.haml', load_pattern('app/views/layouts/_flashes.html.haml', 'default')
 
-javascript_include_tags = load_snippet('javascript_include_tags', @javascript_library)
-
-file 'app/views/layouts/application.html.haml', load_pattern('app/views/layouts/application.html.haml', 'default', binding)
+file 'app/views/layouts/application.html.haml',    load_pattern('app/views/layouts/application.html.haml', 'default', binding)
+#drag-to-share with jquery
+file 'public/javascripts/jquery-drag-to-share.js', load_pattern('public/javascripts/jquery-drag-to-share.js')
+inside('public/images') do
+  run('mkdir drag_to_share')
+end
+file 'public/images/drag_to_share/iconSprite.png', load_pattern('public/images/drag_to_share/iconSprite.png')
 
 # rakefile for use with inaction_mailer
 rakefile 'mail.rake', load_pattern('lib/tasks/mail.rake')
@@ -146,6 +150,7 @@ initializer 'date_time_formats.rb', load_pattern('config/initializers/date_time_
 initializer 'query_trace.rb', load_pattern('config/initializers/query_trace.rb')
 initializer 'backtrace_silencers.rb', load_pattern('config/initializers/backtrace_silencers.rb')
 initializer 'haml_with_html5.rb', load_pattern('config/initializers/haml_with_html5.rb')
+initializer 'drag_to_share.rb', load_pattern('config/initializers/drag_to_share.rb')
 
 commit_state "application files and initializers"
 
