@@ -18,7 +18,7 @@ var images = $(".DragToShare"),
       $("<div>").attr("id", "overlay").css("opacity", 0.7).appendTo("body");
       $("#tip").remove();
       $(this).unbind("mouseenter");
-      $("#targets").css("left", ($("body").width() / 2) - $("#targets").width() / 2).slideDown();
+      $("#targets").css("left", ($("body").width() / 2) - ($("#targets").width() / 2) - 60).slideDown();
     },
     //remove targets and overlay
     stop: function() {
