@@ -1,7 +1,7 @@
 /* Mostly from environmental brand design template */
 body {
   margin:0px;
-  background-image:url(../images/body_bg.jpg);
+  background-image:url(/images/body_bg.jpg);
   background-repeat:repeat-x;
   background-color:#3F2F22;
   font-family:'Helvetica', Arial, Verdana;
@@ -96,7 +96,7 @@ header section.logo h4{
 
 #tabs1 a {
   float:left;
-  background:url("../images/tableft1.gif") no-repeat left top;
+  background:url("/images/tableft1.gif") no-repeat left top;
   margin:0;
   padding:0 0 0 4px;
   text-decoration:none;
@@ -105,7 +105,7 @@ header section.logo h4{
 #tabs1 a span {
   float:left;
   display:block;
-  background:url("../images/tabright1.gif") no-repeat right top;
+  background:url("/images/tabright1.gif") no-repeat right top;
   color:#2C1C0F;
   padding:3px 9px 6px 5px; 
   voice-family:"\"}\"";
@@ -144,7 +144,7 @@ header section.logo h4{
 footer {
   margin:0px;
   padding:0px 0px 0px 0px;
-  background-image:url(../images/footer.jpg);
+  background-image:url(/images/footer.jpg);
   background-repeat:no-repeat;
   margin:0px;
   padding:0px 0px 50px 0px;
@@ -184,7 +184,7 @@ footer div.design {
 /* Main section with photos */
 #dvbannerbgcontainer {
   float:left;
-  background-image:url(../images/bg.jpg);
+  background-image:url(/images/bg.jpg);
   background-repeat:repeat;
   background-position:top;
   border-bottom:1px solid #D5D4CD;
@@ -236,7 +236,7 @@ footer div.design {
 
 /* Whole article content with a background */
 div#content {
-  background-image:url(../images/page_bg.jpg);
+  background-image:url(/images/page_bg.jpg);
   background-repeat:repeat-y;
   background-position:top center;
 }
@@ -297,7 +297,7 @@ div#content div {
 
 #dvleftpanel #leftfoot {
   float:left;
-  background-image:url(../images/left_foot.jpg);
+  background-image:url(/images/left_foot.jpg);
   background-repeat:no-repeat;
   background-position:top;
   margin:12px 0px 0px 0px;
@@ -369,7 +369,7 @@ div#content div {
 }
 
 #dvrightpanel .learn span a {
-  background-image:url(../images/learn.jpg);
+  background-image:url(/images/learn.jpg);
   background-repeat:no-repeat;
   background-position:center;
   font-size:10px;
@@ -385,14 +385,14 @@ div#content div {
 }
 
 #dvrightpanel .learn span a:hover {
-  background-image:url(../images/learn_over.jpg);
+  background-image:url(/images/learn_over.jpg);
   background-repeat:no-repeat;
   color:#FFFFFF;
   text-decoration:none;
 }
 
 #dvrightpanel .learn a:hover {
-  background-image:url(../images/learn_over.jpg);
+  background-image:url(/images/learn_over.jpg);
   background-repeat:no-repeat;
   height:20px;
   padding-bottom:10px;
@@ -402,7 +402,7 @@ div#content div {
 #dvrightpanel #righttfoot {
   float:left;
   height:59px;
-  background-image:url(../images/right_foot.jpg);
+  background-image:url(/images/right_foot.jpg);
   background-repeat:no-repeat;
   background-position:top;
   margin:20px 0px 0px 0px;
