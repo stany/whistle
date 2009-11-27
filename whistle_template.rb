@@ -92,14 +92,9 @@ if template_engine == "haml"
   run "haml --rails ."
 end
 
-flash_class =  load_snippet('flash_class', design)
-
 file 'app/views/layouts/_flashes.html.haml', load_pattern('app/views/layouts/_flashes.html.haml', 'default')
 
 javascript_include_tags = load_snippet('javascript_include_tags', @javascript_library)
-
-extra_stylesheet_tags = load_snippet('extra_stylesheet_tags', design)
-footer_class = load_snippet('footer_class', design)
 
 file 'app/views/layouts/application.html.haml', load_pattern('app/views/layouts/application.html.haml', 'default', binding)
 
@@ -107,8 +102,6 @@ file 'app/views/layouts/application.html.haml', load_pattern('app/views/layouts/
 rakefile 'mail.rake', load_pattern('lib/tasks/mail.rake')
 # rakefile for use with annotate
 rakefile 'annotate.rake', load_pattern('lib/tasks/annotate.rake')
-
-application_styles = load_snippet('application_styles', design)
 
 #file 'public/stylesheets/application.css', load_pattern('public/stylesheets/application.css', 'default', binding)
 
