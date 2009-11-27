@@ -72,21 +72,20 @@ if @javascript_library == "jquery"
   rake("jrails:js:install")
 end
 
-if design == "bluetrip"
-  inside('public') do
-    run('mkdir img')
-  end
-  inside('public/img') do
-    run('mkdir icons')
-  end
-  file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/ie.css", "public/stylesheets/ie.css"
-  file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/print.css", "public/stylesheets/print.css"
-  file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/screen.css", "public/stylesheets/screen.css"
-  file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/style.css", "public/stylesheets/style.css"
-  file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "img/grid.png", "public/img/grid.png"
-  %w(cross doc email external feed im information key pdf tick visited xls).each do |icon|
-    file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "img/icons/#{icon}.png", "public/img/icons/#{icon}.png"
-  end
+# "bluetrip"
+inside('public') do
+  run('mkdir img')
+end
+inside('public/img') do
+  run('mkdir icons')
+end
+file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/ie.css", "public/stylesheets/ie.css"
+file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/print.css", "public/stylesheets/print.css"
+file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/screen.css", "public/stylesheets/screen.css"
+file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/style.css", "public/stylesheets/style.css"
+file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "img/grid.png", "public/img/grid.png"
+%w(cross doc email external feed im information key pdf tick visited xls).each do |icon|
+  file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "img/icons/#{icon}.png", "public/img/icons/#{icon}.png"
 end
 
 if template_engine == "haml"
@@ -272,7 +271,7 @@ file 'app/views/notifier/welcome_email.html.haml', load_pattern('app/views/notif
 file 'app/views/password_resets/edit.html.haml', load_pattern('app/views/password_resets/edit.html.haml')
 file 'app/views/password_resets/new.html.haml', load_pattern('app/views/password_resets/new.html.haml')
 
-file 'app/views/user_sessions/new.html.haml', load_pattern('app/views/user_sessions/new.html.haml', 'bluetrip')
+file 'app/views/user_sessions/new.html.haml', load_pattern('app/views/user_sessions/new.html.haml')
 #else: file 'app/views/user_sessions/new.html.haml', load_pattern('app/views/user_sessions/new.html.haml')
 
 file 'app/views/users/index.html.haml', load_pattern('app/views/users/index.html.haml')
@@ -282,17 +281,9 @@ password_input_block = load_snippet('password_input_block')
 
 file 'app/views/users/_form.html.haml', load_pattern('app/views/users/_form.html.haml', 'default', binding)
 
-if design == "bluetrip" 
-  file 'app/views/users/edit.html.haml', load_pattern('app/views/users/edit.html.haml', 'bluetrip')
-else
-  file 'app/views/users/edit.html.haml', load_pattern('app/views/users/edit.html.haml')
-end
+file 'app/views/users/edit.html.haml', load_pattern('app/views/users/edit.html.haml')
 
-if design == "bluetrip"
-  file 'app/views/users/new.html.haml', load_pattern('app/views/users/new.html.haml', 'bluetrip')
-else
-  file 'app/views/users/new.html.haml', load_pattern('app/views/users/new.html.haml')
-end
+file 'app/views/users/new.html.haml', load_pattern('app/views/users/new.html.haml')
 
 file 'app/views/users/show.html.haml', load_pattern('app/views/users/show.html.haml')
 
@@ -321,11 +312,10 @@ end
 top_menu_class = ""
 left_menu_class = ""
 main_with_left_menu_class = ""
-if design == "bluetrip"
-  top_menu_class = load_snippet("top_menu_class", "bluetrip")
-  left_menu_class = load_snippet("left_menu_class", "bluetrip")
-  main_with_left_menu_class = load_snippet("main_with_left_menu_class", "bluetrip")
-end
+# "bluetrip"
+top_menu_class = load_snippet("top_menu_class", "bluetrip")
+left_menu_class = load_snippet("left_menu_class", "bluetrip")
+main_with_left_menu_class = load_snippet("main_with_left_menu_class", "bluetrip")
 
 file 'app/views/pages/home.html.haml', load_pattern('app/views/pages/home.html.haml', 'default', binding)
 file 'app/views/pages/whistle.html.haml', load_pattern('app/views/pages/whistle.html.haml', 'default', binding)
