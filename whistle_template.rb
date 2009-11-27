@@ -335,20 +335,6 @@ file 'config/routes.rb', load_pattern('config/routes.rb', 'default', binding)
 
 commit_state "routing"
 
-# optionally convert html/erb/css to haml/sass
-# if template_engine == 'haml'
-#   erb_to_haml("app/views")
-# end
-
-# if template_engine == "haml" && design == "compass"
-#   FileUtils.mkdir("public/stylesheets/sass")
-#   Dir["public/stylesheets/**/*.css"].each do |file|
-#     sass_file = file.gsub(/\.css$/, '.sass')
-#     run "css2sass #{file} #{sass_file}"
-#     run "mv #{sass_file} public/stylesheets/sass/#{File.basename(sass_file)}"
-#   end
-# end
-
 # databases
 rake('db:create')
 rake('db:migrate')
