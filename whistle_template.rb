@@ -79,13 +79,13 @@ end
 inside('public/img') do
   run('mkdir icons')
 end
-file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/ie.css", "public/stylesheets/ie.css"
-file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/print.css", "public/stylesheets/print.css"
-file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/screen.css", "public/stylesheets/screen.css"
-file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "css/style.css", "public/stylesheets/style.css"
-file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "img/grid.png", "public/img/grid.png"
+file_from_repo "adambrett", "bluetrip-css-framework", "master", "css/ie.css", "public/stylesheets/ie.css"
+file_from_repo "adambrett", "bluetrip-css-framework", "master", "css/print.css", "public/stylesheets/print.css"
+file_from_repo "adambrett", "bluetrip-css-framework", "master", "css/screen.css", "public/stylesheets/screen.css"
+file_from_repo "adambrett", "bluetrip-css-framework", "master", "css/style.css", "public/stylesheets/style.css"
+file_from_repo "adambrett", "bluetrip-css-framework", "master", "img/grid.png", "public/img/grid.png"
 %w(cross doc email external feed im information key pdf tick visited xls).each do |icon|
-  file_from_repo "mikecrittenden", "bluetrip-css-framework", "master", "img/icons/#{icon}.png", "public/img/icons/#{icon}.png"
+  file_from_repo "adambrett", "bluetrip-css-framework", "master", "img/icons/#{icon}.png", "public/img/icons/#{icon}.png"
 end
 
 if template_engine == "haml"
@@ -104,6 +104,13 @@ file 'public/images/drag_to_share/iconSprite.png', load_pattern('public/images/d
 
 #autoresizable textareas with jquery
 file 'public/javascripts/jquery-autoresize.js', load_pattern('public/javascripts/jquery-autoresize.js')
+
+#tipsy jquery
+file 'public/javascripts/jquery-tipsy.js', load_pattern('public/javascripts/jquery-tipsy.js')
+inside('public/images') do
+  run('mkdir tipsy')
+end
+file 'public/images/tipsy/tipsy.gif', load_pattern('public/images/tipsy/tipsy.gif')
 
 # rakefile for use with inaction_mailer
 rakefile 'mail.rake', load_pattern('lib/tasks/mail.rake')
@@ -154,6 +161,7 @@ initializer 'query_trace.rb', load_pattern('config/initializers/query_trace.rb')
 initializer 'backtrace_silencers.rb', load_pattern('config/initializers/backtrace_silencers.rb')
 initializer 'haml_with_html5.rb', load_pattern('config/initializers/haml_with_html5.rb')
 initializer 'drag_to_share.rb', load_pattern('config/initializers/drag_to_share.rb')
+initializer 'tipsy.rb', load_pattern('config/initializers/tipsy.rb')
 initializer 'autoresize.rb', load_pattern('config/initializers/autoresize.rb')
 
 commit_state "application files and initializers"

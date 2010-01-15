@@ -131,7 +131,7 @@ module Rails
  
     # grab an arbitrary file from github
     def file_from_repo(github_user, repo, sha, filename, to = filename)
-      download("http://github.com/#{github_user}/#{repo}/raw/#{sha}/#{filename}", to)
+      download("http://github.com/#{github_user}/#{repo}/tree/#{sha}/#{filename}", to)
     end
 
     def load_from_file_in_template(file_name, parent_binding = nil, file_group = 'default', file_type = :pattern)
