@@ -19,6 +19,11 @@
     .dvbanner.span-8.prefix-1
       %img{ :src => "../images/banner.jpg", :alt => "", :title=>"", :class => "DragToShare" }
       %textarea.AutoResizable{ :id => "user_comment"} 
+      .ExclusiveCheckboxes 
+        = "Choose Max one:"
+        %input{ :type=>"checkbox" }
+        %input{ :type=>"checkbox" }
+        %input{ :type=>"checkbox" }
       
 #content.span-24
   #dvleftpanel.span-7

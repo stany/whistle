@@ -124,6 +124,10 @@ initializer 'tipsy.rb', load_pattern('config/initializers/tipsy.rb')
 file 'public/javascripts/jquery-clear-on-click.js', load_pattern('public/javascripts/jquery-clear-on-click.js')
 initializer 'clear_on_click.rb', load_pattern('config/initializers/clear_on_click.rb')
 
+#exclusive checkboxes jquery
+file 'public/javascripts/jquery-exclusive-checkboxes.js', load_pattern('public/javascripts/jquery-exclusive-checkboxes.js')
+initializer 'exclusive_checkboxes.rb', load_pattern('config/initializers/exclusive_checkboxes.rb')
+
 ################################
 
 # rakefile for use with inaction_mailer
