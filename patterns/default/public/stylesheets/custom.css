@@ -442,5 +442,14 @@ div#content div {
 #helper { background-color:#c2c2c2; position:absolute; height:35px; padding:15px 70px 0 20px; color:#fff; font-family:Verdana; font-weight:bold; font-size:18px; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; border:3px solid #7d7d7d; }
 #thumb { width:50px; height:50px; position:absolute; right:0; top:0; border-left:3px solid #7d7d7d; }
 
-.share { font-weight:bold; position:absolute; font-size:14px; font-family:Verdana; margin-left:-38px; }
-
+/* Autoresizable textareas */
+textarea.AutoResizable {
+  display: block; 
+  font-family: Sans-serif; 
+  font-size: 1.2em;
+}
+textarea#user_comment {
+  padding: 10px; 
+  width: 505px; 
+  height: 55px; 
+}

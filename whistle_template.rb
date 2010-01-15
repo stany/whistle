@@ -102,6 +102,9 @@ inside('public/images') do
 end
 file 'public/images/drag_to_share/iconSprite.png', load_pattern('public/images/drag_to_share/iconSprite.png')
 
+#autoresizable textareas with jquery
+file 'public/javascripts/jquery-autoresize.js', load_pattern('public/javascripts/jquery-autoresize.js')
+
 # rakefile for use with inaction_mailer
 rakefile 'mail.rake', load_pattern('lib/tasks/mail.rake')
 # rakefile for use with annotate
@@ -151,6 +154,7 @@ initializer 'query_trace.rb', load_pattern('config/initializers/query_trace.rb')
 initializer 'backtrace_silencers.rb', load_pattern('config/initializers/backtrace_silencers.rb')
 initializer 'haml_with_html5.rb', load_pattern('config/initializers/haml_with_html5.rb')
 initializer 'drag_to_share.rb', load_pattern('config/initializers/drag_to_share.rb')
+initializer 'autoresize.rb', load_pattern('config/initializers/autoresize.rb')
 
 commit_state "application files and initializers"
 
