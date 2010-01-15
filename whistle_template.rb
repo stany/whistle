@@ -95,15 +95,22 @@ end
 file 'app/views/layouts/_flashes.html.haml', load_pattern('app/views/layouts/_flashes.html.haml', 'default')
 
 file 'app/views/layouts/application.html.haml',    load_pattern('app/views/layouts/application.html.haml', 'default', binding)
+
+
+################ jquery extensions ################
+
 #drag-to-share with jquery
 file 'public/javascripts/jquery-drag-to-share.js', load_pattern('public/javascripts/jquery-drag-to-share.js')
 inside('public/images') do
   run('mkdir drag_to_share')
 end
+initializer 'drag_to_share.rb', load_pattern('config/initializers/drag_to_share.rb')
+
 file 'public/images/drag_to_share/iconSprite.png', load_pattern('public/images/drag_to_share/iconSprite.png')
 
 #autoresizable textareas with jquery
 file 'public/javascripts/jquery-autoresize.js', load_pattern('public/javascripts/jquery-autoresize.js')
+initializer 'autoresize.rb', load_pattern('config/initializers/autoresize.rb')
 
 #tipsy jquery
 file 'public/javascripts/jquery-tipsy.js', load_pattern('public/javascripts/jquery-tipsy.js')
@@ -111,6 +118,13 @@ inside('public/images') do
   run('mkdir tipsy')
 end
 file 'public/images/tipsy/tipsy.gif', load_pattern('public/images/tipsy/tipsy.gif')
+initializer 'tipsy.rb', load_pattern('config/initializers/tipsy.rb')
+
+#clear-on-click jquery
+file 'public/javascripts/jquery-clear-on-click.js', load_pattern('public/javascripts/jquery-clear-on-click.js')
+initializer 'clear_on_click.rb', load_pattern('config/initializers/clear_on_click.rb')
+
+################################
 
 # rakefile for use with inaction_mailer
 rakefile 'mail.rake', load_pattern('lib/tasks/mail.rake')
@@ -160,9 +174,6 @@ initializer 'date_time_formats.rb', load_pattern('config/initializers/date_time_
 initializer 'query_trace.rb', load_pattern('config/initializers/query_trace.rb')
 initializer 'backtrace_silencers.rb', load_pattern('config/initializers/backtrace_silencers.rb')
 initializer 'haml_with_html5.rb', load_pattern('config/initializers/haml_with_html5.rb')
-initializer 'drag_to_share.rb', load_pattern('config/initializers/drag_to_share.rb')
-initializer 'tipsy.rb', load_pattern('config/initializers/tipsy.rb')
-initializer 'autoresize.rb', load_pattern('config/initializers/autoresize.rb')
 
 commit_state "application files and initializers"
 
